@@ -20,6 +20,7 @@
     "@tarkov/shared": "workspace:*",
     "discord.js": "^14.27.0",
     "dotenv": "^17.4.2",
+    "fastify": "^5.12.3",
     "graphql": "^16.14.2",
     "graphql-request": "^7.4.0",
     "zod": "^4.6.2"
