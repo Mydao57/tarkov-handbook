@@ -1,9 +1,8 @@
-import { Client, Events, GatewayIntentBits, MessageFlags } from "discord.js";
+import { Events, MessageFlags } from "discord.js";
+import { client } from "./bot.js";
 import { config } from "./config.js";
 import { commandMap } from "./commands/index.js";
 import { logger } from "./lib/logger.js";
-
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once(Events.ClientReady, (readyClient) => {
   logger.info(`Ready. Logged in as ${readyClient.user.tag}`);
