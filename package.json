@@ -12,6 +12,7 @@
     "onlyBuiltDependencies": ["esbuild"]
   },
   "scripts": {
+    "postinstall": "pnpm --filter @tarkov/shared build",
     "dev": "pnpm --filter @tarkov/bot dev",
     "dev:all": "pnpm --recursive --parallel --stream dev",
     "build": "pnpm --recursive build",
