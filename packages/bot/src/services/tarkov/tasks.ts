@@ -15,7 +15,7 @@ function listCacheFor(lang: Locale): TtlCache<TaskSummary[]> {
         const data = await tarkovRequest<TasksLightResponse>(ALL_TASKS_LIGHT_QUERY, { lang });
         return data.tasks ?? [];
       },
-      { ttlMs: config.CACHE_TTL_MS },
+      { ttlMs: config.CACHE_TTL_MS, key: `tasks:${lang}` },
     );
     listCaches.set(lang, cache);
   }

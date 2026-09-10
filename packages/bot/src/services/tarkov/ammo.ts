@@ -15,7 +15,7 @@ function cacheFor(lang: Locale): TtlCache<Ammo[]> {
         const data = await tarkovRequest<AmmoResponse>(ALL_AMMO_QUERY, { lang });
         return data.ammo ?? [];
       },
-      { ttlMs: config.CACHE_TTL_MS },
+      { ttlMs: config.CACHE_TTL_MS, key: `ammo:${lang}` },
     );
     caches.set(lang, cache);
   }
