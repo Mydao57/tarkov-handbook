@@ -1,8 +1,13 @@
-import { Events, MessageFlags } from "discord.js";
+import { Events, MessageFlags, type ChatInputCommandInteraction } from "discord.js";
 import { client } from "./bot.js";
 import { config } from "./config.js";
 import { commandMap } from "./commands/index.js";
 import { logger } from "./lib/logger.js";
+import { recordInvocation } from "./lib/invocationLog.js";
+
+function subcommandName(interaction: ChatInputCommandInteraction): string | null {
+  return interaction.options.getSubcommand(false);
+}
 
 client.once(Events.ClientReady, (readyClient) => {
   logger.info(`Ready. Logged in as ${readyClient.user.tag}`);
@@ -15,10 +20,29 @@ client.on(Events.InteractionCreate, async (interaction) => {
       logger.warn(`Received unknown command /${interaction.commandName}`);
       return;
     }
+    const startedAt = Date.now();
     try {
       await command.execute(interaction);
+      recordInvocation({
+        command: interaction.commandName,
+        sub: subcommandName(interaction),
+        userId: interaction.user.id,
+        guildId: interaction.guildId,
+        ok: true,
+        durationMs: Date.now() - startedAt,
+        error: null,
+      });
     } catch (err) {
       // Commands handle their own expected errors; this is the last-resort net.
+      recordInvocation({
+        command: interaction.commandName,
+        sub: subcommandName(interaction),
+        userId: interaction.user.id,
+        guildId: interaction.guildId,
+        ok: false,
+        durationMs: Date.now() - startedAt,
+        error: err instanceof Error ? err.message : String(err),
+      });
       logger.error(`Unhandled error in /${interaction.commandName}:`, err);
       const content = "Something went wrong. Please try again.";
       try {
