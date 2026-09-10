@@ -7,9 +7,11 @@ import type {
   ItemSummary,
 } from "../../types/tarkov.js";
 import { tarkovRequest } from "./client.js";
+import { fixtureItems, fixtureItemSummaries } from "./fixtures.js";
 import { ITEMS_AUTOCOMPLETE_QUERY, ITEMS_SEARCH_QUERY } from "./queries.js";
 
 export async function searchItems(name: string, lang: Locale): Promise<Item[]> {
+  if (getFlags().fixturesMode) return fixtureItems(name);
   const data = await tarkovRequest<ItemsResponse>(ITEMS_SEARCH_QUERY, {
     name,
     lang,
@@ -19,6 +21,7 @@ export async function searchItems(name: string, lang: Locale): Promise<Item[]> {
 }
 
 export async function autocompleteItems(name: string, lang: Locale): Promise<ItemSummary[]> {
+  if (getFlags().fixturesMode) return fixtureItemSummaries(name);
   const data = await tarkovRequest<ItemsAutocompleteResponse>(
     ITEMS_AUTOCOMPLETE_QUERY,
     { name, lang, gameMode: getFlags().gameMode },

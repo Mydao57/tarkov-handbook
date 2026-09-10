@@ -4,6 +4,7 @@ import { getFlags, type GameMode } from "../../runtime/flags.js";
 import { TtlCache } from "../../lib/cache.js";
 import type { TaskDetail, TaskDetailResponse, TasksLightResponse, TaskSummary } from "../../types/tarkov.js";
 import { tarkovRequest } from "./client.js";
+import { fixtureTaskDetail, fixtureTasks } from "./fixtures.js";
 import { ALL_TASKS_LIGHT_QUERY, TASK_DETAIL_QUERY } from "./queries.js";
 
 const listCaches = new Map<string, TtlCache<TaskSummary[]>>();
@@ -25,7 +26,9 @@ function listCacheFor(lang: Locale, gameMode: GameMode): TtlCache<TaskSummary[]>
 }
 
 export async function getAllTasks(lang: Locale): Promise<TaskSummary[]> {
-  return listCacheFor(lang, getFlags().gameMode).get();
+  const flags = getFlags();
+  if (flags.fixturesMode) return fixtureTasks();
+  return listCacheFor(lang, flags.gameMode).get();
 }
 
 function normalize(value: string): string {
@@ -60,6 +63,7 @@ export function looksLikeTaskId(value: string): boolean {
 }
 
 export async function getTaskById(id: string, lang: Locale): Promise<TaskDetail | null> {
+  if (getFlags().fixturesMode) return fixtureTaskDetail(id);
   const data = await tarkovRequest<TaskDetailResponse>(TASK_DETAIL_QUERY, {
     id,
     lang,

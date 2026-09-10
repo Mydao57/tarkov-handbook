@@ -4,6 +4,7 @@ import { getFlags, type GameMode } from "../../runtime/flags.js";
 import { TtlCache } from "../../lib/cache.js";
 import type { Ammo, AmmoResponse } from "../../types/tarkov.js";
 import { tarkovRequest } from "./client.js";
+import { fixtureAmmo } from "./fixtures.js";
 import { ALL_AMMO_QUERY } from "./queries.js";
 
 const caches = new Map<string, TtlCache<Ammo[]>>();
@@ -25,7 +26,9 @@ function cacheFor(lang: Locale, gameMode: GameMode): TtlCache<Ammo[]> {
 }
 
 export async function getAllAmmo(lang: Locale): Promise<Ammo[]> {
-  return cacheFor(lang, getFlags().gameMode).get();
+  const flags = getFlags();
+  if (flags.fixturesMode) return fixtureAmmo();
+  return cacheFor(lang, flags.gameMode).get();
 }
 
 /** Known `caliber` enum-ish values -> human labels. Unknown values fall back to a stripped form. */

@@ -1,0 +1,131 @@
+{
+  "fixture-task-debut": {
+    "id": "fixture-task-debut",
+    "name": "Debut",
+    "normalizedName": "debut",
+    "experience": 1000,
+    "minPlayerLevel": 1,
+    "kappaRequired": true,
+    "lightkeeperRequired": false,
+    "factionName": "Any",
+    "wikiLink": "https://escapefromtarkov.fandom.com/wiki/Debut",
+    "taskImageLink": "https://assets.tarkov.dev/5936d90786f7742b1420ba5b.webp",
+    "trader": {
+      "name": "Prapor",
+      "imageLink": "https://assets.tarkov.dev/54cb50c76803fa8b248b4571.webp"
+    },
+    "map": { "name": "Customs" },
+    "taskRequirements": [],
+    "objectives": [
+      {
+        "type": "shoot",
+        "description": "Eliminate 5 Scavs on Customs",
+        "optional": false,
+        "maps": [{ "name": "Customs" }],
+        "targetNames": ["Scav"],
+        "count": 5,
+        "shotType": "kill"
+      },
+      {
+        "type": "giveItem",
+        "description": "Hand over 2 MP-133 12ga pump-action shotguns",
+        "optional": false,
+        "maps": [],
+        "items": [{ "name": "MP-133 12ga pump-action shotgun", "shortName": "MP-133" }],
+        "count": 2,
+        "foundInRaid": false
+      }
+    ],
+    "finishRewards": {
+      "offerUnlock": [],
+      "skillLevelReward": [],
+      "traderStanding": [{ "trader": { "name": "Prapor" }, "standing": 0.2 }],
+      "items": [{ "item": { "name": "Roubles", "shortName": "RUB" }, "count": 8000 }],
+      "traderUnlock": []
+    }
+  },
+  "fixture-task-shootout-picnic": {
+    "id": "fixture-task-shootout-picnic",
+    "name": "Shootout Picnic",
+    "normalizedName": "shootout-picnic",
+    "experience": 1700,
+    "minPlayerLevel": 2,
+    "kappaRequired": true,
+    "lightkeeperRequired": false,
+    "factionName": "Any",
+    "wikiLink": "https://escapefromtarkov.fandom.com/wiki/Shootout_Picnic",
+    "taskImageLink": null,
+    "trader": {
+      "name": "Prapor",
+      "imageLink": "https://assets.tarkov.dev/54cb50c76803fa8b248b4571.webp"
+    },
+    "map": { "name": "Woods" },
+    "taskRequirements": [{ "task": { "name": "Debut" }, "status": ["complete"] }],
+    "objectives": [
+      {
+        "type": "shoot",
+        "description": "Eliminate 4 Scavs at the sawmill on Woods",
+        "optional": false,
+        "maps": [{ "name": "Woods" }],
+        "targetNames": ["Scav"],
+        "count": 4,
+        "shotType": "kill"
+      }
+    ],
+    "finishRewards": {
+      "offerUnlock": [],
+      "skillLevelReward": [],
+      "traderStanding": [{ "trader": { "name": "Prapor" }, "standing": 0.3 }],
+      "items": [{ "item": { "name": "Roubles", "shortName": "RUB" }, "count": 12000 }],
+      "traderUnlock": []
+    }
+  },
+  "fixture-task-gunsmith-part-1": {
+    "id": "fixture-task-gunsmith-part-1",
+    "name": "Gunsmith - Part 1",
+    "normalizedName": "gunsmith-part-1",
+    "experience": 1900,
+    "minPlayerLevel": 2,
+    "kappaRequired": true,
+    "lightkeeperRequired": false,
+    "factionName": "Any",
+    "wikiLink": "https://escapefromtarkov.fandom.com/wiki/Gunsmith_-_Part_1",
+    "taskImageLink": null,
+    "trader": {
+      "name": "Mechanic",
+      "imageLink": "https://assets.tarkov.dev/5a7c2eca46aef81a7ca2145d.webp"
+    },
+    "map": null,
+    "taskRequirements": [],
+    "objectives": [
+      {
+        "type": "buildWeapon",
+        "description": "Modify an MP-133 to meet the required specification",
+        "optional": false,
+        "maps": [],
+        "item": { "name": "MP-133 12ga pump-action shotgun" }
+      },
+      {
+        "type": "traderLevel",
+        "description": "Reach Mechanic loyalty level 1",
+        "optional": false,
+        "maps": [],
+        "trader": { "name": "Mechanic" },
+        "level": 1
+      }
+    ],
+    "finishRewards": {
+      "offerUnlock": [
+        {
+          "trader": { "name": "Mechanic" },
+          "level": 1,
+          "item": { "name": "SIG MPX 9x19 submachine gun", "shortName": "MPX" }
+        }
+      ],
+      "skillLevelReward": [],
+      "traderStanding": [{ "trader": { "name": "Mechanic" }, "standing": 0.15 }],
+      "items": [{ "item": { "name": "Roubles", "shortName": "RUB" }, "count": 15000 }],
+      "traderUnlock": []
+    }
+  }
+}

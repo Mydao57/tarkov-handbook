@@ -1,0 +1,129 @@
+[
+  {
+    "id": "59faff1d86f7746c51718c9c",
+    "name": "Physical Bitcoin",
+    "shortName": "BTC",
+    "normalizedName": "physical-bitcoin",
+    "updated": "2024-01-01T00:00:00.000Z",
+    "avg24hPrice": 480000,
+    "lastLowPrice": 472000,
+    "low24hPrice": 465000,
+    "high24hPrice": 498000,
+    "changeLast48hPercent": 2.4,
+    "basePrice": 100000,
+    "wikiLink": "https://escapefromtarkov.fandom.com/wiki/Physical_Bitcoin",
+    "link": "https://tarkov.dev/item/physical-bitcoin",
+    "iconLink": "https://assets.tarkov.dev/59faff1d86f7746c51718c9c-icon.webp",
+    "inspectImageLink": "https://assets.tarkov.dev/59faff1d86f7746c51718c9c-image.webp",
+    "types": ["barter"],
+    "sellFor": [
+      { "vendor": { "name": "Therapist", "normalizedName": "therapist" }, "price": 189000, "currency": "RUB", "priceRUB": 189000 },
+      { "vendor": { "name": "Flea Market", "normalizedName": "flea-market" }, "price": 472000, "currency": "RUB", "priceRUB": 472000 }
+    ],
+    "buyFor": [
+      { "vendor": { "name": "Flea Market", "normalizedName": "flea-market" }, "price": 480000, "currency": "RUB", "priceRUB": 480000 }
+    ]
+  },
+  {
+    "id": "5c0530ee86f774697952d952",
+    "name": "LEDX Skin Transilluminator",
+    "shortName": "LEDX",
+    "normalizedName": "ledx-skin-transilluminator",
+    "updated": "2024-01-01T00:00:00.000Z",
+    "avg24hPrice": 1150000,
+    "lastLowPrice": 1090000,
+    "low24hPrice": 1050000,
+    "high24hPrice": 1230000,
+    "changeLast48hPercent": -1.8,
+    "basePrice": 219712,
+    "wikiLink": "https://escapefromtarkov.fandom.com/wiki/LEDX_Skin_Transilluminator",
+    "link": "https://tarkov.dev/item/ledx-skin-transilluminator",
+    "iconLink": "https://assets.tarkov.dev/5c0530ee86f774697952d952-icon.webp",
+    "inspectImageLink": "https://assets.tarkov.dev/5c0530ee86f774697952d952-image.webp",
+    "types": ["barter"],
+    "sellFor": [
+      { "vendor": { "name": "Therapist", "normalizedName": "therapist" }, "price": 263654, "currency": "RUB", "priceRUB": 263654 },
+      { "vendor": { "name": "Flea Market", "normalizedName": "flea-market" }, "price": 1090000, "currency": "RUB", "priceRUB": 1090000 }
+    ],
+    "buyFor": [
+      { "vendor": { "name": "Flea Market", "normalizedName": "flea-market" }, "price": 1150000, "currency": "RUB", "priceRUB": 1150000 }
+    ]
+  },
+  {
+    "id": "57347ca924597744596b4e71",
+    "name": "Graphics card",
+    "shortName": "GPU",
+    "normalizedName": "graphics-card",
+    "updated": "2024-01-01T00:00:00.000Z",
+    "avg24hPrice": 410000,
+    "lastLowPrice": 398000,
+    "low24hPrice": 385000,
+    "high24hPrice": 425000,
+    "changeLast48hPercent": 0.6,
+    "basePrice": 44069,
+    "wikiLink": "https://escapefromtarkov.fandom.com/wiki/Graphics_card",
+    "link": "https://tarkov.dev/item/graphics-card",
+    "iconLink": "https://assets.tarkov.dev/57347ca924597744596b4e71-icon.webp",
+    "inspectImageLink": "https://assets.tarkov.dev/57347ca924597744596b4e71-image.webp",
+    "types": ["barter"],
+    "sellFor": [
+      { "vendor": { "name": "Mechanic", "normalizedName": "mechanic" }, "price": 52883, "currency": "RUB", "priceRUB": 52883 },
+      { "vendor": { "name": "Flea Market", "normalizedName": "flea-market" }, "price": 398000, "currency": "RUB", "priceRUB": 398000 }
+    ],
+    "buyFor": [
+      { "vendor": { "name": "Flea Market", "normalizedName": "flea-market" }, "price": 410000, "currency": "RUB", "priceRUB": 410000 }
+    ]
+  },
+  {
+    "id": "544fb45d4bdc2dee738b4568",
+    "name": "Salewa first aid kit",
+    "shortName": "Salewa",
+    "normalizedName": "salewa-first-aid-kit",
+    "updated": "2024-01-01T00:00:00.000Z",
+    "avg24hPrice": 25000,
+    "lastLowPrice": 23500,
+    "low24hPrice": 22000,
+    "high24hPrice": 27000,
+    "changeLast48hPercent": -3.1,
+    "basePrice": 4870,
+    "wikiLink": "https://escapefromtarkov.fandom.com/wiki/Salewa_first_aid_kit",
+    "link": "https://tarkov.dev/item/salewa-first-aid-kit",
+    "iconLink": "https://assets.tarkov.dev/544fb45d4bdc2dee738b4568-icon.webp",
+    "inspectImageLink": "https://assets.tarkov.dev/544fb45d4bdc2dee738b4568-image.webp",
+    "types": ["provisions", "meds"],
+    "sellFor": [
+      { "vendor": { "name": "Therapist", "normalizedName": "therapist" }, "price": 5844, "currency": "RUB", "priceRUB": 5844 },
+      { "vendor": { "name": "Flea Market", "normalizedName": "flea-market" }, "price": 23500, "currency": "RUB", "priceRUB": 23500 }
+    ],
+    "buyFor": [
+      { "vendor": { "name": "Therapist", "normalizedName": "therapist" }, "price": 13006, "currency": "RUB", "priceRUB": 13006 },
+      { "vendor": { "name": "Flea Market", "normalizedName": "flea-market" }, "price": 25000, "currency": "RUB", "priceRUB": 25000 }
+    ]
+  },
+  {
+    "id": "5447a9cd4bdc2dbd208b4567",
+    "name": "Colt M4A1 5.56x45 assault rifle",
+    "shortName": "M4A1",
+    "normalizedName": "colt-m4a1-556x45-assault-rifle",
+    "updated": "2024-01-01T00:00:00.000Z",
+    "avg24hPrice": 61000,
+    "lastLowPrice": 58000,
+    "low24hPrice": 55000,
+    "high24hPrice": 65000,
+    "changeLast48hPercent": 1.1,
+    "basePrice": 18397,
+    "wikiLink": "https://escapefromtarkov.fandom.com/wiki/Colt_M4A1_5.56x45_assault_rifle",
+    "link": "https://tarkov.dev/item/colt-m4a1-556x45-assault-rifle",
+    "iconLink": "https://assets.tarkov.dev/5447a9cd4bdc2dbd208b4567-icon.webp",
+    "inspectImageLink": "https://assets.tarkov.dev/5447a9cd4bdc2dbd208b4567-image.webp",
+    "types": ["gun", "wearable"],
+    "sellFor": [
+      { "vendor": { "name": "Mechanic", "normalizedName": "mechanic" }, "price": 22076, "currency": "RUB", "priceRUB": 22076 },
+      { "vendor": { "name": "Flea Market", "normalizedName": "flea-market" }, "price": 58000, "currency": "RUB", "priceRUB": 58000 }
+    ],
+    "buyFor": [
+      { "vendor": { "name": "Peacekeeper", "normalizedName": "peacekeeper" }, "price": 380, "currency": "USD", "priceRUB": 53960 },
+      { "vendor": { "name": "Flea Market", "normalizedName": "flea-market" }, "price": 61000, "currency": "RUB", "priceRUB": 61000 }
+    ]
+  }
+]
