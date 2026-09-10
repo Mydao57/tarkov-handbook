@@ -47,6 +47,13 @@ async function persist(): Promise<void> {
   return writeChain;
 }
 
+export async function listUserLocales(): Promise<Array<{ userId: string; locale: Locale }>> {
+  const store = await load();
+  return Object.entries(store.locales)
+    .map(([userId, locale]) => ({ userId, locale }))
+    .sort((a, b) => a.userId.localeCompare(b.userId));
+}
+
 export async function getUserLocale(userId: string): Promise<Locale | undefined> {
   return (await load()).locales[userId];
 }

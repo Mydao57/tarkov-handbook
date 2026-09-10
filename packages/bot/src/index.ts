@@ -5,6 +5,7 @@ import { commandMap } from "./commands/index.js";
 import { logger } from "./lib/logger.js";
 import { recordInvocation } from "./lib/invocationLog.js";
 import { loadFlags } from "./runtime/flags.js";
+import { startInternalApi } from "./internal-api/server.js";
 
 function subcommandName(interaction: ChatInputCommandInteraction): string | null {
   return interaction.options.getSubcommand(false);
@@ -79,7 +80,14 @@ process.on("SIGINT", () => {
 // Load persisted runtime flags before connecting so the first interaction
 // already sees the right gameMode / fixtures / freeze settings.
 loadFlags()
-  .then(() => client.login(config.DISCORD_TOKEN))
+  .then(async () => {
+    if (config.INTERNAL_API_ENABLED) {
+      await startInternalApi().catch((err) =>
+        logger.error("Internal control API failed to start:", err),
+      );
+    }
+    return client.login(config.DISCORD_TOKEN);
+  })
   .catch((err) => {
     logger.error("Startup failed:", err);
     process.exit(1);
