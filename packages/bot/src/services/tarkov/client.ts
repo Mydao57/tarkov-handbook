@@ -2,6 +2,7 @@ import { GraphQLClient } from "graphql-request";
 import { config } from "../../config.js";
 import { ApiUnavailableError } from "../../lib/errors.js";
 import { logger } from "../../lib/logger.js";
+import { HEALTH_PROBE_QUERY } from "./queries.js";
 
 const client = new GraphQLClient(config.TARKOV_API_URL, {
   headers: {
@@ -9,6 +10,31 @@ const client = new GraphQLClient(config.TARKOV_API_URL, {
     "user-agent": "tarkov-handbook/0.1",
   },
 });
+
+let lastOkAt: number | null = null;
+
+/** ISO timestamp of the last tarkov.dev request that succeeded, or null. */
+export function lastSuccessfulFetchAt(): string | null {
+  return lastOkAt === null ? null : new Date(lastOkAt).toISOString();
+}
+
+/**
+ * One lightweight request against the endpoint, no retries, short timeout.
+ * Never throws: returns whether the endpoint answered and, if not, why.
+ */
+export async function probeTarkov(): Promise<{ reachable: boolean; error: string | null }> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), Math.min(config.TARKOV_HTTP_TIMEOUT_MS, 5_000));
+  try {
+    await client.request({ document: HEALTH_PROBE_QUERY, signal: controller.signal });
+    lastOkAt = Date.now();
+    return { reachable: true, error: null };
+  } catch (err) {
+    return { reachable: false, error: err instanceof Error ? err.message : String(err) };
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 interface RetryOptions {
   retries?: number;
@@ -51,7 +77,9 @@ export async function tarkovRequest<T>(
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), config.TARKOV_HTTP_TIMEOUT_MS);
     try {
-      return await client.request<T>({ document, variables, signal: controller.signal });
+      const result = await client.request<T>({ document, variables, signal: controller.signal });
+      lastOkAt = Date.now();
+      return result;
     } catch (err) {
       lastError = err;
       if (!isRetryable(err) || attempt === retries) break;

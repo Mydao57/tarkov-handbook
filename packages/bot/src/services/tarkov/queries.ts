@@ -1,9 +1,17 @@
 import { gql } from "graphql-request";
 
 /**
- * `$lang` is a `LanguageCode` enum value (`en`, `fr`, ...). `gameMode` is pinned
- * to `regular` for v1; lift it to a variable when you add a PvE option.
+ * `$lang` is a `LanguageCode` enum value (`en`, `fr`, ...). `$gameMode` is a
+ * `GameMode` enum value (`regular` / `pve`), driven by the `gameMode` runtime
+ * flag (see `runtime/flags.ts`).
  */
+
+/** Cheapest possible query, used only to check that the endpoint answers. */
+export const HEALTH_PROBE_QUERY = gql`
+  query HealthProbe {
+    __typename
+  }
+`;
 
 export const ITEMS_SEARCH_QUERY = gql`
   query ItemsSearch($name: String!, $lang: LanguageCode!) {
