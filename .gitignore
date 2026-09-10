@@ -2,13 +2,18 @@ node_modules/
 dist/
 *.log
 
+# Build output
+packages/*/dist/
+packages/panel/client/dist/
+
 # Secrets
 .env
 .env.*
 !.env.example
 
-# Runtime data (per-user preferences store)
+# Runtime data (per-user preferences + runtime flags stores)
 data/*.json
+packages/*/data/*.json
 
 .DS_Store
 
