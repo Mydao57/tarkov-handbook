@@ -14,8 +14,8 @@ export const HEALTH_PROBE_QUERY = gql`
 `;
 
 export const ITEMS_SEARCH_QUERY = gql`
-  query ItemsSearch($name: String!, $lang: LanguageCode!) {
-    items(name: $name, lang: $lang, gameMode: regular, limit: 25) {
+  query ItemsSearch($name: String!, $lang: LanguageCode!, $gameMode: GameMode!) {
+    items(name: $name, lang: $lang, gameMode: $gameMode, limit: 25) {
       id
       name
       shortName
@@ -55,8 +55,8 @@ export const ITEMS_SEARCH_QUERY = gql`
 `;
 
 export const ITEMS_AUTOCOMPLETE_QUERY = gql`
-  query ItemsAutocomplete($name: String!, $lang: LanguageCode!) {
-    items(name: $name, lang: $lang, gameMode: regular, limit: 25) {
+  query ItemsAutocomplete($name: String!, $lang: LanguageCode!, $gameMode: GameMode!) {
+    items(name: $name, lang: $lang, gameMode: $gameMode, limit: 25) {
       id
       name
       shortName
@@ -65,8 +65,8 @@ export const ITEMS_AUTOCOMPLETE_QUERY = gql`
 `;
 
 export const ALL_AMMO_QUERY = gql`
-  query AllAmmo($lang: LanguageCode!) {
-    ammo(lang: $lang, gameMode: regular) {
+  query AllAmmo($lang: LanguageCode!, $gameMode: GameMode!) {
+    ammo(lang: $lang, gameMode: $gameMode) {
       item {
         id
         name
@@ -97,8 +97,8 @@ export const ALL_AMMO_QUERY = gql`
 `;
 
 export const ALL_TASKS_LIGHT_QUERY = gql`
-  query AllTasksLight($lang: LanguageCode!) {
-    tasks(lang: $lang, gameMode: regular) {
+  query AllTasksLight($lang: LanguageCode!, $gameMode: GameMode!) {
+    tasks(lang: $lang, gameMode: $gameMode) {
       id
       name
       normalizedName
@@ -110,8 +110,8 @@ export const ALL_TASKS_LIGHT_QUERY = gql`
 `;
 
 export const TASK_DETAIL_QUERY = gql`
-  query TaskDetail($id: ID!, $lang: LanguageCode!) {
-    task(id: $id, lang: $lang, gameMode: regular) {
+  query TaskDetail($id: ID!, $lang: LanguageCode!, $gameMode: GameMode!) {
+    task(id: $id, lang: $lang, gameMode: $gameMode) {
       id
       name
       normalizedName

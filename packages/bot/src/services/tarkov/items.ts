@@ -1,4 +1,5 @@
 import type { Locale } from "../../i18n/index.js";
+import { getFlags } from "../../runtime/flags.js";
 import type {
   Item,
   ItemsAutocompleteResponse,
@@ -9,14 +10,18 @@ import { tarkovRequest } from "./client.js";
 import { ITEMS_AUTOCOMPLETE_QUERY, ITEMS_SEARCH_QUERY } from "./queries.js";
 
 export async function searchItems(name: string, lang: Locale): Promise<Item[]> {
-  const data = await tarkovRequest<ItemsResponse>(ITEMS_SEARCH_QUERY, { name, lang });
+  const data = await tarkovRequest<ItemsResponse>(ITEMS_SEARCH_QUERY, {
+    name,
+    lang,
+    gameMode: getFlags().gameMode,
+  });
   return data.items ?? [];
 }
 
 export async function autocompleteItems(name: string, lang: Locale): Promise<ItemSummary[]> {
   const data = await tarkovRequest<ItemsAutocompleteResponse>(
     ITEMS_AUTOCOMPLETE_QUERY,
-    { name, lang },
+    { name, lang, gameMode: getFlags().gameMode },
     { retries: 1, baseDelayMs: 200 },
   );
   return data.items ?? [];

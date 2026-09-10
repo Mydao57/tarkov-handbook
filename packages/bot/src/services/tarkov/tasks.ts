@@ -1,29 +1,31 @@
 import { config } from "../../config.js";
 import type { Locale } from "../../i18n/index.js";
+import { getFlags, type GameMode } from "../../runtime/flags.js";
 import { TtlCache } from "../../lib/cache.js";
 import type { TaskDetail, TaskDetailResponse, TasksLightResponse, TaskSummary } from "../../types/tarkov.js";
 import { tarkovRequest } from "./client.js";
 import { ALL_TASKS_LIGHT_QUERY, TASK_DETAIL_QUERY } from "./queries.js";
 
-const listCaches = new Map<Locale, TtlCache<TaskSummary[]>>();
+const listCaches = new Map<string, TtlCache<TaskSummary[]>>();
 
-function listCacheFor(lang: Locale): TtlCache<TaskSummary[]> {
-  let cache = listCaches.get(lang);
+function listCacheFor(lang: Locale, gameMode: GameMode): TtlCache<TaskSummary[]> {
+  const key = `tasks:${lang}:${gameMode}`;
+  let cache = listCaches.get(key);
   if (!cache) {
     cache = new TtlCache<TaskSummary[]>(
       async () => {
-        const data = await tarkovRequest<TasksLightResponse>(ALL_TASKS_LIGHT_QUERY, { lang });
+        const data = await tarkovRequest<TasksLightResponse>(ALL_TASKS_LIGHT_QUERY, { lang, gameMode });
         return data.tasks ?? [];
       },
-      { ttlMs: config.CACHE_TTL_MS, key: `tasks:${lang}` },
+      { ttlMs: config.CACHE_TTL_MS, key },
     );
-    listCaches.set(lang, cache);
+    listCaches.set(key, cache);
   }
   return cache;
 }
 
 export async function getAllTasks(lang: Locale): Promise<TaskSummary[]> {
-  return listCacheFor(lang).get();
+  return listCacheFor(lang, getFlags().gameMode).get();
 }
 
 function normalize(value: string): string {
@@ -58,7 +60,11 @@ export function looksLikeTaskId(value: string): boolean {
 }
 
 export async function getTaskById(id: string, lang: Locale): Promise<TaskDetail | null> {
-  const data = await tarkovRequest<TaskDetailResponse>(TASK_DETAIL_QUERY, { id, lang });
+  const data = await tarkovRequest<TaskDetailResponse>(TASK_DETAIL_QUERY, {
+    id,
+    lang,
+    gameMode: getFlags().gameMode,
+  });
   return data.task ?? null;
 }
 

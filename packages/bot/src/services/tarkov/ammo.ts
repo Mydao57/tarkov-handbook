@@ -1,29 +1,31 @@
 import { config } from "../../config.js";
 import type { Locale } from "../../i18n/index.js";
+import { getFlags, type GameMode } from "../../runtime/flags.js";
 import { TtlCache } from "../../lib/cache.js";
 import type { Ammo, AmmoResponse } from "../../types/tarkov.js";
 import { tarkovRequest } from "./client.js";
 import { ALL_AMMO_QUERY } from "./queries.js";
 
-const caches = new Map<Locale, TtlCache<Ammo[]>>();
+const caches = new Map<string, TtlCache<Ammo[]>>();
 
-function cacheFor(lang: Locale): TtlCache<Ammo[]> {
-  let cache = caches.get(lang);
+function cacheFor(lang: Locale, gameMode: GameMode): TtlCache<Ammo[]> {
+  const key = `ammo:${lang}:${gameMode}`;
+  let cache = caches.get(key);
   if (!cache) {
     cache = new TtlCache<Ammo[]>(
       async () => {
-        const data = await tarkovRequest<AmmoResponse>(ALL_AMMO_QUERY, { lang });
+        const data = await tarkovRequest<AmmoResponse>(ALL_AMMO_QUERY, { lang, gameMode });
         return data.ammo ?? [];
       },
-      { ttlMs: config.CACHE_TTL_MS, key: `ammo:${lang}` },
+      { ttlMs: config.CACHE_TTL_MS, key },
     );
-    caches.set(lang, cache);
+    caches.set(key, cache);
   }
   return cache;
 }
 
 export async function getAllAmmo(lang: Locale): Promise<Ammo[]> {
-  return cacheFor(lang).get();
+  return cacheFor(lang, getFlags().gameMode).get();
 }
 
 /** Known `caliber` enum-ish values -> human labels. Unknown values fall back to a stripped form. */
