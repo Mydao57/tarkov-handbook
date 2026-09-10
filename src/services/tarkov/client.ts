@@ -6,7 +6,7 @@ import { logger } from "../../lib/logger.js";
 const client = new GraphQLClient(config.TARKOV_API_URL, {
   headers: {
     // A plain, non-browser UA: browser-like UAs get challenged by Cloudflare.
-    "user-agent": "tarkov-discord-bot/0.1 (+https://github.com/the-hideout/tarkov-api)",
+    "user-agent": "tarkov-handbook/0.1",
   },
 });
 

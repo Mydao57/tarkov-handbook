@@ -1,4 +1,4 @@
-# Tarkov Discord Bot
+# TarkovHandbook
 
 A Discord bot that serves **Escape from Tarkov** data from the community
 [tarkov.dev](https://tarkov.dev) GraphQL API: item prices, ammunition stats and
