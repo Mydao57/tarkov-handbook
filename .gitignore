@@ -1,0 +1,16 @@
+node_modules/
+dist/
+*.log
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Runtime data (per-user preferences store)
+data/*.json
+
+.DS_Store
+
+# Claude Code worktrees
+.claude/
