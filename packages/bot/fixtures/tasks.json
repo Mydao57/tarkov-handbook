@@ -1,0 +1,38 @@
+[
+  {
+    "id": "fixture-task-debut",
+    "name": "Debut",
+    "normalizedName": "debut",
+    "trader": { "name": "Prapor" }
+  },
+  {
+    "id": "fixture-task-shootout-picnic",
+    "name": "Shootout Picnic",
+    "normalizedName": "shootout-picnic",
+    "trader": { "name": "Prapor" }
+  },
+  {
+    "id": "fixture-task-checking",
+    "name": "Checking",
+    "normalizedName": "checking",
+    "trader": { "name": "Prapor" }
+  },
+  {
+    "id": "fixture-task-shaking-up-teller",
+    "name": "Shaking Up Teller",
+    "normalizedName": "shaking-up-teller",
+    "trader": { "name": "Prapor" }
+  },
+  {
+    "id": "fixture-task-the-punisher-part-1",
+    "name": "The Punisher - Part 1",
+    "normalizedName": "the-punisher-part-1",
+    "trader": { "name": "Prapor" }
+  },
+  {
+    "id": "fixture-task-gunsmith-part-1",
+    "name": "Gunsmith - Part 1",
+    "normalizedName": "gunsmith-part-1",
+    "trader": { "name": "Mechanic" }
+  }
+]
