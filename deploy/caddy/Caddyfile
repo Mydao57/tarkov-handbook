@@ -1,0 +1,14 @@
+# Append this block to /etc/caddy/Caddyfile (or drop it in a file imported from
+# there). Caddy provisions and renews the TLS cert automatically and sets
+# X-Forwarded-Proto / X-Forwarded-For, which the panel needs for the Secure
+# session cookie (it runs Fastify with trustProxy: true).
+
+tarkov-handbook.hugothiebaut.fr {
+	encode zstd gzip
+
+	# flush_interval -1 disables response buffering so the /api/logs/stream
+	# Server-Sent Events feed streams line by line.
+	reverse_proxy 127.0.0.1:4786 {
+		flush_interval -1
+	}
+}

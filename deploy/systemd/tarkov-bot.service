@@ -1,0 +1,30 @@
+[Unit]
+Description=TarkovHandbook Discord bot
+Documentation=https://github.com/Mydao57/tarkov-handbook
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tarkov
+Group=tarkov
+WorkingDirectory=/opt/tarkov-handbook/packages/bot
+EnvironmentFile=/etc/tarkov-handbook/bot.env
+ExecStart=/usr/bin/node dist/index.js
+Restart=on-failure
+RestartSec=5
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6
+# The bot writes data/flags.json and data/preferences.json here.
+ReadWritePaths=/opt/tarkov-handbook/packages/bot/data
+
+[Install]
+WantedBy=multi-user.target

@@ -65,7 +65,7 @@ export async function startWebPanel(): Promise<void> {
   }
 
   const app = await buildServer();
-  await app.listen({ host: "0.0.0.0", port: config.WEB_PANEL_PORT });
+  await app.listen({ host: config.WEB_PANEL_HOST, port: config.WEB_PANEL_PORT });
   logger.info(
     `Admin panel listening on :${config.WEB_PANEL_PORT} (public: ${config.WEB_PANEL_PUBLIC_URL})`,
   );

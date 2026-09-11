@@ -1,0 +1,30 @@
+[Unit]
+Description=TarkovHandbook admin web panel
+Documentation=https://github.com/Mydao57/tarkov-handbook
+After=network-online.target tarkov-bot.service
+Wants=network-online.target
+# The panel degrades gracefully if the bot is down, so this is Wants, not Requires.
+Wants=tarkov-bot.service
+
+[Service]
+Type=simple
+User=tarkov
+Group=tarkov
+WorkingDirectory=/opt/tarkov-handbook/packages/panel
+EnvironmentFile=/etc/tarkov-handbook/panel.env
+ExecStart=/usr/bin/node dist/index.js
+Restart=on-failure
+RestartSec=5
+
+# Hardening (the panel writes nothing to disk)
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

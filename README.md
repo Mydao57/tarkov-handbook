@@ -153,6 +153,7 @@ Fill `packages/panel/.env`:
 | --- | --- | --- |
 | `WEB_PANEL_ENABLED` | yes | Must be `true` or the panel refuses to serve |
 | `WEB_PANEL_PORT` | no | Listen port, default `4786` |
+| `WEB_PANEL_HOST` | no | Bind address, default `0.0.0.0`. Set `127.0.0.1` behind a local reverse proxy. |
 | `WEB_PANEL_PUBLIC_URL` | yes | Public origin the browser uses. Dev: `http://localhost:5173`. Prod: `https://<your-panel-host>`. The redirect URI is `<this>/auth/callback`. |
 | `BOT_INTERNAL_API_URL` | no | Default `http://127.0.0.1:4785` - must match the bot |
 | `INTERNAL_API_TOKEN` | yes | Same value as the bot's |
@@ -191,6 +192,10 @@ pnpm --filter @tarkov/panel start   # process 2, serves the built client
   network and set `BOT_INTERNAL_API_URL` accordingly.
 - Rotating `SESSION_SECRET` or `INTERNAL_API_TOKEN` invalidates existing sessions
   / breaks the bridge until both sides match again.
+
+## Deploying to a VPS
+
+`deploy/` has systemd units, a Caddy and an nginx reverse-proxy config, prod `.env` templates and an update script for running the bot and panel as two services behind TLS (target: `tarkov-handbook.hugothiebaut.fr`). See [`deploy/README.md`](deploy/README.md).
 
 ## Scripts
 
