@@ -5,6 +5,9 @@ const schema = z.object({
   // Master on/off so infra can disable the panel without unscheduling it.
   WEB_PANEL_ENABLED: z.stringbool().default(false),
   WEB_PANEL_PORT: z.coerce.number().int().positive().default(4786),
+  // Address to bind. Default 0.0.0.0; set 127.0.0.1 when a local reverse
+  // proxy is the only thing that should reach the panel (VPS deploy).
+  WEB_PANEL_HOST: z.string().min(1).default("0.0.0.0"),
   // Public origin the browser reaches the panel on. Used to build the OAuth2
   // redirect URI: <WEB_PANEL_PUBLIC_URL>/auth/callback (register that in the
   // Discord developer portal).
