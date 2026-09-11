@@ -75,7 +75,7 @@ export function Dashboard(): React.JSX.Element {
           {tarkov.error && (
             <>
               <dt>Error</dt>
-              <dd className="muted clip">{tarkov.error}</dd>
+              <dd className="muted">{tarkov.error}</dd>
             </>
           )}
         </dl>
@@ -222,13 +222,13 @@ export function Dashboard(): React.JSX.Element {
                     /{inv.command}
                     {inv.sub ? ` ${inv.sub}` : ""}
                   </td>
-                  <td className="clip">{inv.userId}</td>
-                  <td className="clip">{inv.guildId ?? "DM"}</td>
+                  <td>{inv.userId}</td>
+                  <td>{inv.guildId ?? "DM"}</td>
                   <td>
                     {inv.ok ? (
                       <span className="ok">ok</span>
                     ) : (
-                      <span className="error clip" title={inv.error ?? ""}>
+                      <span className="error" title={inv.error ?? ""}>
                         error
                       </span>
                     )}

@@ -143,15 +143,6 @@ dl.kv dd {
   display: block;
 }
 
-.clip {
-  max-width: 22ch;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: inline-block;
-  vertical-align: bottom;
-}
-
 .ok {
   color: var(--ok);
 }
