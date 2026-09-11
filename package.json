@@ -17,6 +17,7 @@
     "dev:all": "pnpm --recursive --parallel --stream dev",
     "build": "pnpm --recursive build",
     "start": "pnpm --filter @tarkov/bot start",
+    "start:all": "pnpm --recursive --parallel --stream start",
     "deploy": "pnpm --filter @tarkov/bot deploy",
     "deploy:global": "pnpm --filter @tarkov/bot deploy:global",
     "lint": "pnpm --recursive lint",
