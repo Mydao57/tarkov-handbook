@@ -24,4 +24,10 @@ export default tseslint.config(
       "@typescript-eslint/consistent-type-imports": "warn",
     },
   },
+  {
+    // TypeScript's own checker handles undefined identifiers; `no-undef` only
+    // gets in the way for browser/node globals across the workspace.
+    files: ["**/*.{ts,tsx,mts,cts}"],
+    rules: { "no-undef": "off" },
+  },
 );
